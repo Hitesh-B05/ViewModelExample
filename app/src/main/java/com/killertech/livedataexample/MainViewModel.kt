@@ -1,12 +1,17 @@
 package com.killertech.livedataexample
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel(private val factsModel: Facts) : ViewModel() {
-    val factsLiveData = MutableLiveData<String>("Let's see some facts")
+    private val factsMutableLiveData = MutableLiveData<String>("Let's see some facts")
+
+    val factsLiveData: LiveData<String>
+    get() = factsMutableLiveData
+
 
     fun updateFactData() {
-        factsLiveData.value = factsModel.getRandomFact()
+        factsMutableLiveData.value = factsModel.getRandomFact()
     }
 }
